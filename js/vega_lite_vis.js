@@ -1,7 +1,8 @@
 var vg_1 = "js/area_chart.vg.json";
-var vg_2="js/migrant_population_choropleth.vg.json";
+var vg_2 = "js/migrant_population_choropleth.vg.json";
 var vg_3 = "js/bar_chart_age.vg.json";
-var vg_4 = "js/world_map.vg.json;"
+var vg_4 = "js/world_map.vg.json";
+var vg_5 = "js/migrant_population_aus.vg.json";
 
 vegaEmbed("#area_chart", vg_1).then(function(result) {
 // Access the Vega view instance
@@ -14,5 +15,10 @@ vegaEmbed("#choropleth", vg_2).then(function(result) {
 vegaEmbed("#bar_chart_age", vg_3).then(function(result) {
     }).catch(console.error);
 
-vegaEmbed("#bar_chart_age", vg_4).then(function(result) {
+vegaEmbed("#world_map", vg_4).then(function(result) {
     }).catch(console.error);
+
+vegaEmbed("#migration_aus", vg_5).then(function(result) {
+    }).catch(console.error);
+
+
