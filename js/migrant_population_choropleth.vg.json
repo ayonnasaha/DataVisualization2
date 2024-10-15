@@ -1,13 +1,29 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Migrant Population by State",
-    "width": 600,
-    "height": 400,
+    "title": {
+      "text":"Migrant Population by State",
+      "fontSize":20
+    },
+    
+    "height":600,
+    "width":700,
     "projection": {"type": "mercator"},
     "data": {
       "url": "https://raw.githubusercontent.com/ayonnasaha/DataVis2/refs/heads/main/STE_2021_AUST_GDA2020.json",
       "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
     },
+    "params": [
+      {
+        "name": "year",
+        "value": "2021",
+        "bind": {
+          "input": "select",
+          "options": ["2001",	"2006",	"2011",	"2016",	"2021"],
+          "labels": ["2001",	"2006",	"2011",	"2016",	"2021"],
+          "name": "Select Year: "
+       }
+      }
+    ],
     "transform": [
       {
         "lookup": "properties.STE_NAME21",
@@ -16,14 +32,19 @@
             "url": "https://raw.githubusercontent.com/ayonnasaha/DataVis2/refs/heads/main/Graph%202.1%20migrant%20population%20by%20state%20cleaned.csv"
           },
           "key": "Name",
-          "fields": ["2021"]
+          "fields": ["2001",	"2006",	"2011",	"2016",	"2021"]
         }
+      },
+      {
+        "calculate": "datum[year]",
+        "as": "Migrant Population (%)"
       }
     ],
+    
     "mark": {"type": "geoshape", "stroke": "white"},
     "encoding": {
       "color": {
-        "field": "2021",
+        "field": "Migrant Population (%)",
         "type": "quantitative",
         "scale": {
               "type": "threshold",
@@ -33,7 +54,7 @@
       },
       "tooltip": [
         {"field": "properties.STE_NAME21", "type": "nominal", "title": "State"},
-        {"field": "2021", "type": "quantitative", "title":"Migrant population(%)"}
+        {"field": "Migrant Population (%)", "type": "quantitative", "title":"Migrant population(%)"}
       ]
     }
   }
