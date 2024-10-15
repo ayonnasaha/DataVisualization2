@@ -1,36 +1,44 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 400, "height": 250,
-    "description": "Bar chart with text labels showing the median age for different countries of birth in 2023.",
-    "data": {
-      "url": "https://raw.githubusercontent.com/ayonnasaha/DataVisualization2/refs/heads/main/data/median%20age%20cleaned.csv",
-      "format": {
-        "type": "csv"
-      }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 450, "height": 300,
+  "description": "Bar chart with text labels showing the median age for different countries of birth in 2023.",
+  "title":{
+    "text": "Median Age by country of birth",
+    "fontSize": 20
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/ayonnasaha/DataVisualization2/refs/heads/main/data/median%20age%20cleaned.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "encoding": {
+    "y": {"field": "Country of birth", "type": "nominal"},
+    "x": {
+      "field": "2023",
+      "type": "quantitative",
+      "scale": {"domain": [0, 80]},
+      "axis": {"title": "Median Age in 2023"}
     },
-    "encoding": {
-      "y": {"field": "Country of birth", "type": "nominal"},
-      "x": {
-        "field": "2023",
-        "type": "quantitative",
-        "scale": {"domain": [0, 80]},
-        "axis": {"title": "Median Age in 2023"}
-      }
-    },
-    "layer": [
-      {
-        "mark": "bar"
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "left",
-          "baseline": "middle",
-          "dx": 3
-        },
-        "encoding": {
-          "text": {"field": "2023", "type": "quantitative"}
-        }
-      }
+    "tooltip": [
+      {"field":"Country of birth","type":"nominal","title":"Country of birth"},
+      {"field":"2023","type":"quantitative","title":"Median Age"}
     ]
-  }
+  },
+  "layer": [
+    {
+      "mark": "bar"
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 3
+      },
+      "encoding": {
+        "text": {"field": "2023", "type": "quantitative"}
+      }
+    }
+  ]
+}
