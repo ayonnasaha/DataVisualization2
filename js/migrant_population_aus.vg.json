@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ayonnasaha/DataVisualization2/refs/heads/main/data/migrant%20population%20by%20country%20of%20birth.csv",
+    "format": {"type": "csv"}
+  },
+  "title": {
+    "text": "Migrant population by country of birth",
+    "fontSize": 18
+  },
+  "transform": [
+    {
+      "fold": ["2013", "2023"],
+      "as": ["Year", "Population"]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Country of birth",
+      "type": "nominal",
+      "axis": {
+        "title": "Country of Birth",
+        "labelAngle": -30
+      }
+    },
+    "y": {
+      "field": "Population",
+      "type": "quantitative",
+      "title": "Migrant Population"
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year"
+        },
+        "xOffset": {
+          "field": "Year"
+        },
+        "tooltip": [
+          {"field": "Country of birth", "type": "nominal", "title": "Country"},
+          {"field": "Population", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+    
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -10,
+        "dy":-30,
+        "color": "red"
+      },
+      "encoding": {
+        "x": {"field": "Country of birth"},
+        "y": {"field": "2013"},
+        "text": {
+          "field": "Country of birth",
+          "type": "nominal"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum['Country of birth'] == 'England' || datum['Country of birth'] == 'Nepal'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "mark": {"invalid": null}
+  }
+}
