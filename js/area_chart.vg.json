@@ -1,13 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600, "height": 350,
-  "data": {"url": "https://raw.githubusercontent.com/ayonnasaha/Week10HW/refs/heads/main/data/Graph%201.1-%20proportion%20born%20overseas%20cleaned.csv"},
+  "data": {"url": "https://raw.githubusercontent.com/ayonnasaha/DataVisualization2/refs/heads/main/data/Graph%201.1-%20proportion%20born%20overseas%20cleaned.csv"},
+  "title":{
+    "text":"Australian Population over the years",
+    "fontSize":20
+  },
+  "height":250, "width":275,
   "transform": [
     {
       "fold": [
-        "Proportion of overseas-born (%)",
-        "Number of Australian-born (M)",
-        "Number of overseas-born (M)"
+        "Australian-born",
+        "Overseas-born"
       ],
       "as": ["series", "value"]
     }
@@ -30,7 +33,7 @@
     "y": {
       "field": "value", 
       "type": "quantitative",
-      "title": "Value"
+      "title": "Population (Millions)"
     },
     "color": {
       "field": "series",
@@ -46,6 +49,5 @@
       {"field": "series", "type": "nominal", "title": "Category"},
       {"field": "value", "type": "quantitative", "title": "Value"}
     ]
-  }
-  
+  } 
 }
